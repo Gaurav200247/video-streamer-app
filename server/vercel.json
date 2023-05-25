@@ -2,5 +2,11 @@
   "version": 2,
   "name": "video-streamer-app",
   "builds": [{ "src": "server.js", "use": "@vercel/node" }],
-  "routes": [{ "src": "/(.*)", "dest": "/server.js" }]
+  "routes": [
+    {
+      "src": "/(.*)",
+      "dest": "/server.js",
+      "methods": ["POST", "GET", "PUT", "DELETE", "PATCH"]
+    }
+  ]
 }
