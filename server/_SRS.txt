@@ -1,0 +1,170 @@
+Aim : To make a video streaming platform (like prime).
+
+Technology used : MERN stack(MongoDB,Express.js,Reactjs,node.js), tailwind, materialUI, video.js
+
+Deployment site : vercel
+
+Features:
+1. stream videos
+
+2. stream trailer on HOVER thumbnail 
+    (with options like :  play trailer,pause,mute,add to wishlist,hide the video) 
+    (and also contains simple video details like : title,synopsis,video length,year of release and censor ratings)  
+
+3. VIDEO PREVIEW PAGE DETAILS must have features 
+    like: 
+        title
+        thumbnail
+        trailer
+        imdb_ratings or user_ratings
+        video_length
+        year_of_release
+        video_quality (SD,HD,1080p,HDR,4k)
+        censor_ratings
+        synopsis / description
+        continue_watching_time
+        directors
+        starring_actors
+        genres / tags
+        audio_languages
+        subtitle_languages
+        subtitles (contains subtitle scripts)
+        next_part_link (contains part number and part link)
+        views
+        likes / reviews
+        column_name (for Home page : works as a carousel heading under which videos are listed )
+
+    and preview must have these options:
+        continue watching (if returning) / Play (if first time visiting)
+        watch trailer
+        add to wishlist
+        background trailer preview
+        volume button for background trailer preview
+        share (opens up a modalto select sharing platform and a copylink btn)
+        feedback (which opens up a modal to give a feedback)
+        Get Help
+
+    and also conatins a RECOMMENDED/RELATED videos list Or NEXT PARTS
+
+4. Video Player must contains :
+    at top :
+        title at center
+        subtitle_btn ((to change video subtitle from a menu))
+        options btn (to change video quality from a menu)
+        volume btn (which on click shows a volume range bar)
+        fullscreen btn
+        cross btn (to close video and go back to preview page)
+    
+    at middle :
+        play-pause btn (works on clicking on any part of middle screen)
+        +10 sec btn (at right)
+        -10 sec btn (at left) 
+
+    at bottom :
+        video_length_slider
+        video_current_timing
+        video_total_length
+        video_quality
+
+5. All Pages must have a NavBar (its color should match the colorSceheme of app - to blend it in)
+    **navbar only hidden when watching video**
+    NAVBAR must contains :
+        at left :
+            logo
+            Home link
+            latest videos link
+            top rated link
+            categories filter menu
+            Help link / FAQ
+
+        at right :
+            searchBar (which extends on click in navbar)
+            user btn (opens up a menu on clicking)
+                **if user not signed in then SignIn btn only**
+                -user btn must conatins : 
+                    avatar photo
+                    name
+                    down arrow
+                -user btn menu must contains : 
+                    settings link
+                    manage profile link
+                    sign Out btn
+
+6. User must give this following info to use features like : (settings, wishlist, continue_watching and feedback/reviews)
+    User Info given while registering or while making an account :
+    **(at manage profile link user can change these things)**
+        usr_name
+        usr_DOB (date of birth)
+        email
+        password
+        mobile_no.
+        user must choose AVATAR given to him/her by us (at first the avatar given was random)
+        subtitle_design
+        watch_history
+        role (user/admin)
+
+7. At settings page user can change these options like from a sub nav bar :
+    -Video Player Settings :
+        AutoPlay (it Start the next available video automatically when ON)
+        AutoPlay Trailers (it Automatically play trailers while hovering on thumbnails when ON)
+    -subtitle Settings :
+        to change subtitle views as it contains 3 to 4 preset designs
+    -watch history :
+        list of all videos watched (can be edited)
+        each item conatins:
+            video_thumbnail 
+            title
+            date of last watch
+            delete option
+    -profile settings link     
+
+8.  Admin powers :
+    admin can do extra things than users like :
+        add videos
+        delete videos
+        edit videos details
+        remove users
+        edit users
+        check charts
+
+
+9. AD SENSE :
+    Post app maintainance work
+    5 seconds skippable ad at video start with (skip ad btn)
+
+
+Colour Scheme Used : 
+    Vibrant color schemes (#ffa800,#341cff,#00ff7e,#63ffb1,#000000) and contains dark theme(white to #1f2024 only)
+
+APIs :
+    {{URL}}/api/v1/videos = (to GET all videos details)
+    {{URL}}/api/v1/videos = (to POST all videos details)                                **ADMIN**
+
+    {{URL}}/api/v1/videos/VID_ID = (to GET single video details)
+    {{URL}}/api/v1/videos/VID_ID = (to DELETE single video)                             **ADMIN**
+    {{URL}}/api/v1/videos/VID_ID = (to EDIT single video)                               **ADMIN**
+
+    {{URL}}/api/v1/feedback = (to POST and EDIT and DELETE single feedback on a video)  **For LOGGED IN USER**
+    {{URL}}/api/v1/feedback = (to GET all feedbacks of a single video) 
+    {{URL}}/api/v1/feedback = (to delete feedback of a single video)                    **ADMIN**
+
+    {{URL}}/api/v1/signIn = (to POST signin/register request)    
+    {{URL}}/api/v1/login = (to POST login request)
+    
+    {{URL}}/api/v1/password/forgot = (to POST forgot password request)
+    {{URL}}/api/v1/password/reset/GENERATED_TOKEN = (to PUT reset password request from a link generated)
+
+    {{URL}}/api/v1/me = (to GET User details)                                           **LOGGED IN USER**
+    {{URL}}/api/v1/me/update = (to PUT / EDIT User details)                             **LOGGED IN USER**
+    {{URL}}/api/v1/password/update = (to PUT / UPDATE User password)                    **LOGGED IN USER**
+
+    {{URL}}/api/v1/admin/users = (to GET all Users)                                     **ADMIN**
+    {{URL}}/api/v1/admin/users/USR_ID = (to GET single User details)                    **ADMIN**
+    {{URL}}/api/v1/admin/users/USR_ID = (to PUT/UPDATE single User role)                **ADMIN**
+    {{URL}}/api/v1/admin/users/USR_ID = (to DELETE single User)                         **ADMIN**
+
+    {{URL}}/api/v1/issue = (to POST an issue)
+    {{URL}}/api/v1/issue = (to GET all issues)                                          **ADMIN**
+    {{URL}}/api/v1/issue/ISSUE_ID = (to EDIT / PUT issue)                               **ADMIN**
+
+ENVIRONMENT VARIABLES : (.env file variables)

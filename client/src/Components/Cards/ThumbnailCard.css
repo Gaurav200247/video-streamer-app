@@ -1,0 +1,13 @@
+.add-btn {
+  width: 100%;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  transition: 0.3s all ease;
+  transform: translateY(100%);
+  background-color: transparent;
+}
+.show-add-btn {
+  transform: translateY(0%);
+  background-color: #e4af00c6;
+}

@@ -1,0 +1,36 @@
+.increaseW {
+  width: 40rem;
+}
+.decreaseW {
+  width: 20rem;
+}
+.hide {
+  transform: translateX(-100%);
+  transition: 0.7s all ease;
+}
+
+.show {
+  transform: translateX(0%);
+  transition: 0.7s all ease;
+}
+
+.filter_hide {
+  transform: translateX(-100%);
+}
+
+.filter_show {
+  transform: translateX(0%);
+}
+
+@media only screen and (max-width: 600px) {
+  .increaseW {
+    width: 13rem;
+  }
+  .decreaseW {
+    width: 13rem;
+  }
+  .show {
+    transform: translateX(-100%);
+    transition: 0.7s all ease;
+  }
+}

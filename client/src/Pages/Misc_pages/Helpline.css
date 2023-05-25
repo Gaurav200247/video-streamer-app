@@ -1,0 +1,11 @@
+.show_faq {
+  height: auto;
+  opacity: 1;
+  transition: 0.3s all ease;
+}
+.hide_faq {
+  height: 0;
+  opacity: 0;
+  transition: 0.3s all ease;
+  overflow: hidden;
+}

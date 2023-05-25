@@ -1,0 +1,59 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* scrollbar CSS */
+::-webkit-scrollbar {
+  width: 10px;
+  height: 5px;
+  background-color: rgb(45, 45, 45);
+}
+::-webkit-scrollbar-thumb {
+  background: rgb(86, 86, 86);
+}
+
+.pagination {
+  display: flex;
+  justify-content: center;
+  padding: 0;
+}
+
+.page-item {
+  background-color: rgb(44, 44, 44);
+  list-style: none;
+  border: 1px solid rgba(0, 0, 0, 0.178);
+  padding: 1vmax 1.5vmax;
+  transition: all 0.3s ease;
+  cursor: pointer;
+}
+.page-item:first-child {
+  border-radius: 3px 0 0 3px;
+}
+
+.page-item:last-child {
+  border-radius: 0 3px 3px 0;
+}
+
+.page-link {
+  text-decoration: none;
+  font-weight: 500;
+  font-size: 1rem;
+  color: white;
+  transition: all 0.3s;
+}
+
+.page-item:hover {
+  background-color: rgb(33, 33, 33);
+}
+
+.page-item:hover .page-link {
+  color: white;
+}
+
+.pageItemActive {
+  background-color: goldenrod;
+}
+
+.pageLinkActive {
+  color: white;
+}
