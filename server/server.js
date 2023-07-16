@@ -55,9 +55,9 @@ app.get("*", (req, res) => {
 });
 
 // simple route
-app.get("/", (req, res) => {
-  res.send("Welcome to my app");
-});
+// app.get("/", (req, res) => {
+//   res.send("Welcome to my app");
+// });
 
 // custom-middlewares
 app.use(notFoundMiddleware);
