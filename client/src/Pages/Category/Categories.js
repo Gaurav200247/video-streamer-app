@@ -3,7 +3,7 @@ import CategoryCard from "../../Components/Cards/CategoryCard";
 
 const Categories = ({ isMargin }) => {
   return (
-    <div className="flex flex-col justify-between items-center">
+    <div className="flex flex-col justify-between items-center w-full">
       <div className="flex justify-start items-center w-full">
         <h3
           className={`${
@@ -14,7 +14,7 @@ const Categories = ({ isMargin }) => {
         </h3>
       </div>
 
-      <div className="grid grid-cols-2 lg:grid-cols-4 gap-5  lg:p-[2rem] pt-[1.5rem] ">
+      <div className="grid grid-cols-2 lg:grid-cols-4 gap-5  lg:p-[2rem] pt-[1.5rem] w-full">
         <CategoryCard genre="Action" image="/Categories/action.jpg" />{" "}
         <CategoryCard genre="Fight" image="/Categories/adventure.jpg" />{" "}
         {/* <CategoryCard genre="cartoons" image="/Categories/cartoons.jpg" />{" "} */}

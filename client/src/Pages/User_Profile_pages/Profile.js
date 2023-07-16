@@ -116,7 +116,7 @@ const Profile = () => {
                 Continue Watching
               </h1>
               <img
-                src={`http://localhost:3000/${video.video.thumbnail.path}`}
+                src={video.video.thumbnail.ThumbnailURL}
                 alt="Continue Watching"
                 className="w-full h-full lg:h-[90%] object-cover rounded-sm"
               />

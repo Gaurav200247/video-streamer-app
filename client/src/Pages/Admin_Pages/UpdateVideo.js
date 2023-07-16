@@ -12,14 +12,11 @@ import { Field, Formik, Form } from "formik";
 import { SlPlus } from "react-icons/sl";
 import { FaTrash } from "react-icons/fa";
 import { RiImageAddLine } from "react-icons/ri";
-import { RxCross1, RxCross2 } from "react-icons/rx";
-import { MdOndemandVideo } from "react-icons/md";
+import { RxCross2 } from "react-icons/rx";
 import Loader from "../../Components/Loader/Loader";
 import { toast } from "react-toastify";
 
 const UpdateVideo = () => {
-  const videoEl = useRef(null);
-
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const { video } = useSelector((state) => state.getSingleVideoDetails);
@@ -30,7 +27,6 @@ const UpdateVideo = () => {
   const { id } = useParams();
   const ThumbnailInputRef = useRef(null);
   const CoverInputRef = useRef(null);
-  const VideoInputRef = useRef(null);
 
   useEffect(() => {
     dispatch(getSingleVideoDetails(id));
@@ -48,8 +44,6 @@ const UpdateVideo = () => {
     }
   }, [updateError, dispatch, isUpdated, navigate]);
 
-  console.log({ isUpdated });
-
   return loading ? (
     <Loader msg="Updating Video, Please wait..." />
   ) : (
@@ -60,42 +54,38 @@ const UpdateVideo = () => {
             initialValues={{
               title: video.video.title,
               synopsis: video.video.synopsis,
+
               tagName: "",
               tags: video.video.tags.length > 0 && video.video.tags,
+
               speciality_Name: "",
               speciality_In:
                 video.video.speciality_In.length > 0 &&
                 video.video.speciality_In,
+
               video_quality: video.video.video_quality,
               censor_ratings: video.video.censor_ratings,
               audio_language: video.video.audio_language,
+
               featured: video.video.featured,
+
               hours: video.video.video_length.hours,
               minutes: video.video.video_length.minutes,
+
               thumbnail: "",
-              thumbnail_preview: `http://localhost:3000/api/v1/content/${
+              thumbnail_preview:
                 (video &&
                   video.video &&
                   video.video.thumbnail &&
-                  video.video.thumbnail.ThumbnailID) ||
-                "not_loaded"
-              }`,
+                  video.video.thumbnail.ThumbnailURL) ||
+                "not_loaded",
               cover_page: "",
-              cover_page_preview: `http://localhost:3000/api/v1/content/${
+              cover_page_preview:
                 (video &&
                   video.video &&
                   video.video.cover_page &&
-                  video.video.cover_page.CoverID) ||
-                "not_loaded"
-              }`,
-              video: "",
-              video_Preview: `http://localhost:3000/api/v1/content/${
-                (video &&
-                  video.video &&
-                  video.video.video &&
-                  video.video.video.VideoID) ||
-                "not_loaded"
-              }`,
+                  video.video.cover_page.CoverPageURL) ||
+                "not_loaded",
             }}
             onSubmit={(values) => {
               console.log({ values });
@@ -119,7 +109,7 @@ const UpdateVideo = () => {
               values.thumbnail && myForm.set("thumbnail", values.thumbnail);
               values.cover_page && myForm.set("cover_page", values.cover_page);
 
-              values.video && myForm.set("videoFile", values.video);
+              console.log({ values });
 
               dispatch(updateVideoAction(myForm, id));
             }}
@@ -449,75 +439,6 @@ const UpdateVideo = () => {
                     </div>
                     {/* ------------------------ Cover Photo CONTAINER Closed------------------------*/}
                   </div>
-                </div>
-
-                {/*------------------------ Videos ------------------------ */}
-                <h1 className="text-[1.3rem] font-semibold">Upload Video*</h1>
-                <div className="w-full h-[70vh] bg-gray-100 text-black my-5 p-5 mt-3 rounded-md shadow-md">
-                  {values.video_Preview ? (
-                    <div className="w-full h-full relative">
-                      <RxCross1
-                        className="absolute top-2 right-2 text-[2rem] font-semibold rounded-full p-1 text-white bg-red-600 shadow-md cursor-pointer z-10"
-                        onClick={() => {
-                          setFieldValue("video_Preview", "");
-                          setFieldValue("video", "");
-                        }}
-                      />
-                      <video
-                        src={values.video_Preview}
-                        controls
-                        className="w-full h-full object-cover"
-                        ref={videoEl}
-                        onLoadedMetadata={() => {
-                          const video = videoEl.current;
-
-                          if (!video) {
-                            setFieldValue("hours", "");
-                            setFieldValue("minutes", "");
-                            return;
-                          }
-
-                          let duration = Math.round(video.duration);
-                          let minutes = Math.round(duration / 60);
-                          let hours = Math.round(duration / 3600);
-
-                          setFieldValue("hours", hours);
-                          setFieldValue("minutes", minutes);
-
-                          // console.log(
-                          //   `The video is ${hours} hrs ${minutes} mins long.`
-                          // );
-                        }}
-                      ></video>
-                    </div>
-                  ) : (
-                    <div
-                      onClick={() => VideoInputRef.current.click()}
-                      className="w-full h-full  cursor-pointer rounded-md overflow-hidden border-[2px] p-5 border-gray-400 text-zinc-500 border-dashed flex flex-col justify-center items-center"
-                    >
-                      <MdOndemandVideo className="text-[3rem] p-1" />
-                      <p className="text-[0.9rem] font-bold ">Upload Video</p>
-                      <input
-                        hidden
-                        type="file"
-                        accept=".mp4, .mkv"
-                        ref={VideoInputRef}
-                        onChange={(event) => {
-                          console.log("Video changed");
-
-                          const reader = new FileReader();
-
-                          reader.onload = () => {
-                            if (reader.readyState === 2) {
-                              setFieldValue("video_Preview", reader.result);
-                            }
-                          };
-                          reader.readAsDataURL(event.target.files[0]);
-                          setFieldValue("video", event.target.files[0]);
-                        }}
-                      />
-                    </div>
-                  )}
                 </div>
 
                 {/* ------------------------ Buttons ------------------------*/}

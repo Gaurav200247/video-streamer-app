@@ -114,6 +114,8 @@ const VideoDetails = () => {
 
   // console.log({ wishlistResponse, IsInList });
 
+  // console.log({ myvideo: video.video.video.videoURL });
+
   return loading ? (
     <Loader msg="Fetching details, Please wait..." />
   ) : wishlistLoading ? (
@@ -125,7 +127,7 @@ const VideoDetails = () => {
         <div className="absolute top-0 left-0 w-full h-screen z-[500] bg-black flex flex-col justify-between items-center">
           <div className="w-[95%] relative h-[90%] bg-black rounded-md overflow-hidden">
             <video
-              src={`http://localhost:3000/api/v1/content/${video.video.video.VideoID}`}
+              src={video.video.video.videoURL}
               controls
               className="w-full h-full bg-[#0f0f0f] pt-5 object-cover"
             ></video>
@@ -193,12 +195,12 @@ const VideoDetails = () => {
         {/* poster */}
         <div className="absolute w-full h-screen top-0 left-0 z-[0] ">
           <img
-            src={`http://localhost:3000/api/v1/content/${
+            src={
               video &&
               video.video &&
               video.video.cover_page &&
-              video.video.cover_page.CoverID
-            }`}
+              video.video.cover_page.CoverPageURL
+            }
             alt={video && video.video && video.video._id}
             className="w-full h-full object-cover brightness-[1.4]"
           />{" "}

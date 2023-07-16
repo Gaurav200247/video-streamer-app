@@ -74,9 +74,7 @@ export const SliderCard1 = ({ item }) => {
       {/* image block*/}
       <div className="w-full  h-[70%]">
         <img
-          src={`http://localhost:3000/api/v1/content/${
-            item.thumbnail && item.thumbnail.thumbnailID
-          }`}
+          src={item.thumbnail && item.thumbnail.ThumbnailURL}
           alt={item._id}
           className="w-full h-full object-cover hover:scale-105 duration-300"
         />
@@ -178,9 +176,7 @@ export const SliderCard2 = ({ item }) => {
       <div className="w-full h-full">
         {isPlay ? (
           <video
-            src={`http://localhost:3000/api/v1/content/${
-              item && item.video && item.video.VideoID
-            }`}
+            src={item && item.video && item.video.videoURL}
             autoPlay
             muted
             loop
@@ -188,9 +184,7 @@ export const SliderCard2 = ({ item }) => {
           ></video>
         ) : (
           <img
-            src={`http://localhost:3000/api/v1/content/${
-              item.cover_page && item.cover_page.CoverID
-            }`}
+            src={item.cover_page && item.cover_page.CoverPageURL}
             alt={item._id}
             className="w-full h-full object-cover"
           />

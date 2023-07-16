@@ -21,7 +21,6 @@ const notFoundMiddleware = require("./Middlewares/notFound");
 const errHandlerMiddleware = require("./Middlewares/errHandler");
 const videosRouter = require("./Routers/videosRouters");
 const userRouter = require("./Routers/UserRouters");
-const TestRouter = require("./Routers/TestRouter");
 
 const cookieParser = require("cookie-parser");
 const bodyParser = require("body-parser");
@@ -47,7 +46,6 @@ app.use(cookieParser()); //used to parse cookies
 // routes
 app.use("/api/v1", videosRouter);
 app.use("/api/v1", userRouter);
-app.use("/api/v1", TestRouter);
 
 app.get("/", (req, res) => {
   res.send("Welcome to my app");

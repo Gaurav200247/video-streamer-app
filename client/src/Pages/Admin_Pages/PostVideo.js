@@ -88,7 +88,7 @@ const PostVideo = () => {
 
               myForm.set("videoFile", values.video);
 
-              console.log(myForm);
+              // console.log({ values });
 
               dispatch(postVideoAction(myForm));
             }}

@@ -54,50 +54,15 @@ const CarouselSlider = ({ FeaturedData }) => {
 export default CarouselSlider;
 
 export const CarouselSliderCard = ({ item }) => {
-  // const dispatch = useDispatch();
-  // const { isAuthenticated, user } = useSelector((state) => state.user);
-  // const { wishlistResponse } = useSelector((state) => state.wishlist);
-  // const navigate = useNavigate();
-
-  // const AddToWishlistHandler = (VideoID) => {
-  //   if (isAuthenticated) {
-  //     const myForm = new FormData();
-  //     myForm.set("videoID", VideoID);
-
-  //     dispatch(addToWishlist(myForm));
-  //   } else {
-  //     toast.warning("Please login to access this feature...");
-  //     navigate("/login");
-  //   }
-  // };
-
   const shadowStyles = {
     boxShadow: "rgba(0, 0, 0, 0.24) 0px 3px 8px",
   };
-
-  // const [isInWIshlist, setisInWIshlist] = useState(
-  //   user &&
-  //     user.user &&
-  //     user.user.wishList &&
-  //     user.user.wishList.length > 0 &&
-  //     user.user.wishList.includes(item._id)
-  // );
-
-  // useEffect(() => {
-  //   if (wishlistResponse && wishlistResponse.success) {
-  //     setisInWIshlist(true);
-  //   }
-  // }, [isInWIshlist, wishlistResponse]);
-
-  // console.log({ wishlistResponse });
 
   return (
     <div className="text-white">
       {/* image */}
       <img
-        src={`http://localhost:3000/api/v1/content/${
-          item.cover_page && item.cover_page.CoverID
-        }`}
+        src={item.cover_page && item.cover_page.CoverPageURL}
         alt={item._id}
         className="w-full h-[30vh] sm:h-[40vh] lg:h-[70vh] rounded-lg overflow-hidden object-cover brightness-[1.2]"
       />

@@ -30,9 +30,7 @@ const ThumbnailCard = ({ data }) => {
       <div className="w-full h-full">
         {isPlay ? (
           <video
-            src={`http://localhost:3000/api/v1/content/${
-              data && data.video && data.video.VideoID
-            }`}
+            src={data && data.video && data.video.videoURL}
             autoPlay
             muted
             loop
@@ -40,9 +38,7 @@ const ThumbnailCard = ({ data }) => {
           ></video>
         ) : (
           <img
-            src={`http://localhost:3000/api/v1/content/${
-              data && data.thumbnail && data.thumbnail.ThumbnailID
-            }`}
+            src={data && data.thumbnail && data.thumbnail.ThumbnailURL}
             alt="video_id"
             className="w-full h-full object-cover"
           />

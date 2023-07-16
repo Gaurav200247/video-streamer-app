@@ -9,58 +9,37 @@ const VideoSchema = mongoose.Schema(
     },
 
     cover_page: {
-      CoverID: {
+      CoverPageURL: {
         type: String,
-        required: [true, "Please provide CoverID"],
+        required: [true, "Please provide thumbnail URL"],
+      },
+      cover_path: {
+        type: String,
+        required: [true, "Please provide thumbnail path"],
       },
     },
 
     thumbnail: {
-      ThumbnailID: {
+      ThumbnailURL: {
         type: String,
-        required: [true, "Please provide thumbnailID"],
+        required: [true, "Please provide thumbnail URL"],
+      },
+      thumbnail_path: {
+        type: String,
+        required: [true, "Please provide thumbnail path"],
       },
     },
 
     video: {
-      VideoID: {
+      videoURL: {
         type: String,
-        required: [true, "Please provide videoID"],
+        required: [true, "Please provide thumbnail URL"],
+      },
+      video_path: {
+        type: String,
+        required: [true, "Please provide thumbnail path"],
       },
     },
-
-    // thumbnail: {
-    //   path: {
-    //     type: String,
-    //     required: [true, "Please provide thumbnail path"],
-    //   },
-    //   size: {
-    //     type: Number,
-    //     required: [true, "Please provide thumbnail size"],
-    //   },
-    // },
-
-    // cover_page: {
-    //   path: {
-    //     type: String,
-    //     required: [true, "Please provide cover_page path"],
-    //   },
-    //   size: {
-    //     type: Number,
-    //     required: [true, "Please provide cover_page size"],
-    //   },
-    // },
-
-    // video: {
-    //   path: {
-    //     type: String,
-    //     required: [true, "Please provide video path"],
-    //   },
-    //   size: {
-    //     type: Number,
-    //     required: [true, "Please provide video size"],
-    //   },
-    // },
 
     video_length: {
       hours: { type: Number, default: 0 },

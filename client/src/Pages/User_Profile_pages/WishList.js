@@ -75,9 +75,7 @@ export const SingleItem = ({ VideoID }) => {
       className="flex duration-200 hover:shadow-md p-5 border-b-2 border-zinc-400 justify-between items-center w-full"
     >
       <img
-        src={`http://localhost:3000/${
-          Data && Data.thumbnail && Data.thumbnail.path
-        }`}
+        src={Data && Data.thumbnail && Data.thumbnail.ThumbnailURL}
         alt={VideoID}
         className="w-[10%] rounded-sm"
       />
