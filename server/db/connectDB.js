@@ -5,7 +5,9 @@ const connectDB = async (url) => {
     .set("strictQuery", true)
     .connect(url)
     .then(() => console.log("db connected"))
-    .catch(() => console.log("db connection failed !!"));
+    .catch((err) => {
+      console.log(err, "db connection failed !!");
+    });
 };
 
 module.exports = connectDB;
