@@ -1,3 +1,4 @@
+import { BASE_URL } from "./BASE_URL";
 import axios from "axios";
 
 export const getAllVideos =
@@ -8,9 +9,9 @@ export const getAllVideos =
       let link = "";
 
       if (!all) {
-        link = `/api/v1/videos?title=${title}&tags=${tags}&page=${currentPage}&mostViewed=${mostViewed}&limit=${12}`;
+        link = `${BASE_URL}/api/v1/videos?title=${title}&tags=${tags}&page=${currentPage}&mostViewed=${mostViewed}&limit=${12}`;
       } else {
-        link = `/api/v1/videos`;
+        link = `${BASE_URL}/api/v1/videos`;
       }
       // console.log({ link });
 
@@ -26,7 +27,7 @@ export const getSingleVideoDetails = (id) => async (dispatch) => {
   try {
     dispatch({ type: "GetSingleVideoDetailsRequest" });
 
-    let link = `/api/v1/videos/${id}`;
+    let link = `${BASE_URL}/api/v1/videos/${id}`;
 
     const data = await axios.get(link);
 
@@ -48,7 +49,7 @@ export const postVideoAction = (VideoData) => async (dispatch) => {
   try {
     dispatch({ type: "PostVideoRequest" });
 
-    let link = `/api/v1/videos`;
+    let link = `${BASE_URL}/api/v1/videos`;
 
     const config = {
       headers: {
@@ -77,7 +78,7 @@ export const deleteVideoAction = (id) => async (dispatch) => {
   try {
     dispatch({ type: "DeleteVideoRequest" });
 
-    let link = `/api/v1/videos/${id}`;
+    let link = `${BASE_URL}/api/v1/videos/${id}`;
 
     const data = await axios.delete(link);
 
@@ -100,7 +101,7 @@ export const updateVideoAction = (VideoData, id) => async (dispatch) => {
   try {
     dispatch({ type: "UpdateVideoRequest" });
 
-    let link = `/api/v1/videos/${id}`;
+    let link = `${BASE_URL}/api/v1/videos/${id}`;
 
     const config = {
       headers: {
@@ -130,7 +131,7 @@ export const createReview = (review) => async (dispatch) => {
   try {
     dispatch({ type: "CreateUpdateReviewRequest" });
 
-    let link = `/api/v1/review`;
+    let link = `${BASE_URL}/api/v1/review`;
 
     const config = {
       headers: {
@@ -159,7 +160,7 @@ export const deleteReview = (videoID, reviewID) => async (dispatch) => {
   try {
     dispatch({ type: "DeleteReviewRequest" });
 
-    let link = `/api/v1/review?videoID=${videoID}&reviewID=${reviewID}`;
+    let link = `${BASE_URL}/api/v1/review?videoID=${videoID}&reviewID=${reviewID}`;
 
     const data = await axios.delete(link);
 
@@ -182,7 +183,7 @@ export const UpdateVideoView = (videoID) => async (dispatch) => {
   try {
     dispatch({ type: "UpdateVideoViewRequest" });
 
-    let link = `/api/v1/videos/views/${videoID}`;
+    let link = `${BASE_URL}/api/v1/videos/views/${videoID}`;
 
     const config = { headers: { "Content-Type": "application/json" } };
 

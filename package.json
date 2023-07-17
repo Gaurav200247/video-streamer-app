@@ -6,9 +6,9 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "node server/index.js",
-    "dev": "nodemon server/index.js",
-    "build": "yarn install && cd ./client && npm install && npm run build"
+    "dev": "nodemon server/index.js"
   },
+  "homepage": "./",
   "keywords": [],
   "author": "",
   "license": "ISC",

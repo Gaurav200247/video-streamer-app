@@ -31,7 +31,8 @@ const cookieParser = require("cookie-parser");
 const bodyParser = require("body-parser");
 
 // Extra Packages for api security
-app.use(cors());
+app.use(cors({ origin: "http://localhost:3000", credentials: true }));
+// cors({ credentials: true, origin: "http://localhost:3000" });
 app.use(helmet());
 app.use(xss());
 
@@ -54,18 +55,18 @@ app.use("/api/v1", userRouter);
 
 // build Routes
 
-if (process.env.NODE_ENV === "production") {
-  app.use(express.static(path.join(__dirname, "../client/build")));
+// app.use(express.static(path.join(__dirname, "../client/build")));
 
-  app.get("*", (req, res) => {
-    res.sendFile(path.resolve(__dirname, "../client/build/index.html"));
-  });
-}
+// console.log(path.join(__dirname, "../client/build"));
+
+// app.get("*", (req, res) => {
+//   res.sendFile(path.resolve(__dirname, "../client/build/index.html"));
+// });
 
 // simple route
-// app.get("/", (req, res) => {
-//   res.send("Welcome to my app");
-// });
+app.get("/", (req, res) => {
+  res.send("Welcome to my app");
+});
 
 // custom-middlewares
 app.use(notFoundMiddleware);

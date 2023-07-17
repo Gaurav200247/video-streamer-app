@@ -1,6 +1,8 @@
 import axios from "axios";
-
+import { BASE_URL } from "./BASE_URL";
 const config = { headers: { "Content-Type": "application/json" } };
+
+axios.defaults.withCredentials = true;
 
 export const RegisterUser = (userData) => async (dispatch) => {
   try {
@@ -12,7 +14,12 @@ export const RegisterUser = (userData) => async (dispatch) => {
       },
     };
 
-    const { data } = await axios.post(`/api/v1/register`, userData, config);
+    const { data } = await axios.post(
+      `${BASE_URL}/api/v1/register`,
+
+      userData,
+      config
+    );
 
     console.log({ data });
 
@@ -27,7 +34,7 @@ export const loginUser = (email, password) => async (dispatch) => {
     dispatch({ type: "LoginRequest" });
 
     const { data } = await axios.post(
-      `/api/v1/login`,
+      `${BASE_URL}/api/v1/login`,
       { email, password },
       config
     );
@@ -44,7 +51,7 @@ export const loadUser = () => async (dispatch) => {
   try {
     dispatch({ type: "LoadUserRequest" });
 
-    const { data } = await axios.get(`/api/v1/me`);
+    const { data } = await axios.get(`${BASE_URL}/api/v1/me`);
 
     console.log({ data });
 
@@ -58,7 +65,7 @@ export const getMyDetails = () => async (dispatch) => {
   try {
     dispatch({ type: "GetMyDetailsRequest" });
 
-    const { data } = await axios.get(`/api/v1/me`);
+    const { data } = await axios.get(`${BASE_URL}/api/v1/me`);
 
     console.log({ data });
 
@@ -70,7 +77,7 @@ export const getMyDetails = () => async (dispatch) => {
 
 export const logOutUser = () => async (dispatch) => {
   try {
-    const { data } = await axios.get(`/api/v1/logout`);
+    const { data } = await axios.get(`${BASE_URL}/api/v1/logout`);
 
     console.log({ data });
 
@@ -84,7 +91,7 @@ export const forgotPassword = (email) => async (dispatch) => {
   try {
     dispatch({ type: "ForgotPasswordRequest" });
 
-    let link = `/api/v1/password/forgot`;
+    let link = `${BASE_URL}/api/v1/password/forgot`;
 
     const data = await axios.post(link, { email }, config);
 
@@ -108,7 +115,7 @@ export const resetPassword =
     try {
       dispatch({ type: "ResetPasswordRequest" });
 
-      let link = `/api/v1/password/reset/${resetToken}`;
+      let link = `${BASE_URL}/api/v1/password/reset/${resetToken}`;
 
       const data = await axios.patch(
         link,
@@ -135,7 +142,7 @@ export const updateProfilePassword =
     try {
       dispatch({ type: "updatePasswordRequest" });
 
-      let link = `/api/v1/me/update/password`;
+      let link = `${BASE_URL}/api/v1/me/update/password`;
 
       const data = await axios.put(
         link,
@@ -161,7 +168,7 @@ export const updateProfileDetails = (userData) => async (dispatch) => {
   try {
     dispatch({ type: "updateProfileRequest" });
 
-    let link = `/api/v1/me/update`;
+    let link = `${BASE_URL}/api/v1/me/update`;
 
     const config = {
       headers: {
@@ -190,7 +197,7 @@ export const updateProfileSettings = (userData) => async (dispatch) => {
   try {
     dispatch({ type: "updateProfileSettingsRequest" });
 
-    let link = `/api/v1/me/update/settings`;
+    let link = `${BASE_URL}/api/v1/me/update/settings`;
 
     const data = await axios.put(link, userData, config);
 
@@ -212,7 +219,7 @@ export const getAllUsers = () => async (dispatch) => {
   try {
     dispatch({ type: "GetAllUsersRequest" });
 
-    let link = `/api/v1/admin/users`;
+    let link = `${BASE_URL}/api/v1/admin/users`;
 
     const data = await axios.get(link);
 
@@ -234,7 +241,7 @@ export const getSingleUserDetails = (id) => async (dispatch) => {
   try {
     dispatch({ type: "GetSingleUserRequest" });
 
-    let link = `/api/v1/admin/users/get/${id}`;
+    let link = `${BASE_URL}/api/v1/admin/users/get/${id}`;
 
     const data = await axios.get(link);
 
@@ -256,7 +263,7 @@ export const deleteUser = (id) => async (dispatch) => {
   try {
     dispatch({ type: "DeleteUserRequest" });
 
-    let link = `/api/v1/admin/users/delete/${id}`;
+    let link = `${BASE_URL}/api/v1/admin/users/delete/${id}`;
 
     const data = await axios.delete(link);
 
@@ -278,7 +285,7 @@ export const updateUsers = (userData, id) => async (dispatch) => {
   try {
     dispatch({ type: "UpdateUserRequest" });
 
-    let link = `/api/v1/admin/users/update/${id}`;
+    let link = `${BASE_URL}/api/v1/admin/users/update/${id}`;
 
     const data = await axios.put(link, userData, config);
 
@@ -300,7 +307,7 @@ export const addToWishlist = (VideoID) => async (dispatch) => {
   try {
     dispatch({ type: "WishListRequest" });
 
-    let link = `/api/v1/me/addtowishlist`;
+    let link = `${BASE_URL}/api/v1/me/addtowishlist`;
 
     const data = await axios.put(link, VideoID, config);
 
