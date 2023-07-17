@@ -31,7 +31,13 @@ const cookieParser = require("cookie-parser");
 const bodyParser = require("body-parser");
 
 // Extra Packages for api security
-app.use(cors({ origin: "http://localhost:3000", credentials: true }));
+app.use(
+  cors({
+    origin:
+      "https://64b50b7d8d78930082800161--zippy-granita-f9b579.netlify.app",
+    credentials: true,
+  })
+);
 // cors({ credentials: true, origin: "http://localhost:3000" });
 app.use(helmet());
 app.use(xss());
