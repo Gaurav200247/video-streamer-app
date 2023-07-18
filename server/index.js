@@ -33,8 +33,7 @@ const bodyParser = require("body-parser");
 // Extra Packages for api security
 app.use(
   cors({
-    origin:
-      "https://64b6709c61fba5086bf5758e--cheery-druid-fb5b11.netlify.app/",
+    origin: "https://video-streaming-app-7.netlify.app",
     credentials: true,
   })
 );
