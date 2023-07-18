@@ -33,8 +33,7 @@ const bodyParser = require("body-parser");
 // Extra Packages for api security
 app.use(
   cors({
-    origin:
-      "https://64b50b7d8d78930082800161--zippy-granita-f9b579.netlify.app",
+    origin: "http://localhost:3000",
     credentials: true,
   })
 );
