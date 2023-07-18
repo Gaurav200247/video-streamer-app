@@ -1,3 +1,5 @@
-export const BASE_URL = "http://localhost:4000";
+// backend Url
 
-// export const BASE_URL = "https://video-streamer-app.onrender.com";
+// export const BASE_URL = "http://localhost:4000";
+
+export const BASE_URL = "https://video-streamer-app.vercel.app/";
