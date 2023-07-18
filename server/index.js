@@ -34,11 +34,11 @@ const bodyParser = require("body-parser");
 
 // https://video-streaming-app-7.netlify.app
 // http://localhost:3000
-// https://video-streamer-app-frontend.vercel.app/
+// https://video-streamer-app-frontend.vercel.app
 
 app.use(
   cors({
-    origin: "https://video-streamer-app-frontend.vercel.app/",
+    origin: "https://video-streamer-app-frontend.vercel.app",
     credentials: true,
   })
 );
