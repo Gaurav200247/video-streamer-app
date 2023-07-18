@@ -41,7 +41,7 @@ const Register = async (req, res) => {
     },
   });
 
-  SendToken(res, createUser, StatusCodes.CREATED);
+  SendToken(req, res, createUser, StatusCodes.CREATED);
 };
 
 module.exports = Register;

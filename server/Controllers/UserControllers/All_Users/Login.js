@@ -30,7 +30,7 @@ const LogIn = async (req, res) => {
     throw new customAPIError("Invalid Credentials", StatusCodes.UNAUTHORIZED);
   }
 
-  SendToken(res, user, StatusCodes.OK);
+  SendToken(req, res, user, StatusCodes.OK);
 };
 
 module.exports = LogIn;

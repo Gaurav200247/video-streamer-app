@@ -36,7 +36,7 @@ const ResetPassword = async (req, res, next) => {
 
   await user.save();
 
-  SendToken(res, user, StatusCodes.OK);
+  SendToken(req, res, user, StatusCodes.OK);
 };
 
 module.exports = ResetPassword;

@@ -31,13 +31,16 @@ const cookieParser = require("cookie-parser");
 const bodyParser = require("body-parser");
 
 // Extra Packages for api security
+
+// https://video-streaming-app-7.netlify.app
+// http://localhost:3000
+
 app.use(
   cors({
     origin: "https://video-streaming-app-7.netlify.app",
     credentials: true,
   })
 );
-// cors({ credentials: true, origin: "http://localhost:3000" });
 app.use(helmet());
 app.use(xss());
 

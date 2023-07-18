@@ -16,7 +16,6 @@ export const RegisterUser = (userData) => async (dispatch) => {
 
     const { data } = await axios.post(
       `${BASE_URL}/api/v1/register`,
-
       userData,
       config
     );
