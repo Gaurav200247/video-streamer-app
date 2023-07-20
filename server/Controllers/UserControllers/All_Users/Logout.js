@@ -9,6 +9,10 @@ const LogOut = async (req, res) => {
     signed: true,
   });
 
+  res.set("Access-Control-Allow-Origin", req.headers.origin);
+  res.set("Access-Control-Allow-Credentials", "true");
+  res.set("Access-Control-Expose-Headers", "date, etag");
+
   res
     .status(StatusCodes.OK)
     .json({ success: true, msg: "Logged Out Successfully !!" });
