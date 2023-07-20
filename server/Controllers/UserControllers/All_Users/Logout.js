@@ -5,11 +5,9 @@ const LogOut = async (req, res) => {
   res.cookie("userToken", null, {
     expires: new Date(Date.now()),
     httpOnly: true,
+    sameSite: "strict",
+    signed: true,
   });
-
-  res.set("Access-Control-Allow-Origin", req.headers.origin);
-  res.set("Access-Control-Allow-Credentials", "true");
-  res.set("Access-Control-Expose-Headers", "date, etag");
 
   res
     .status(StatusCodes.OK)
