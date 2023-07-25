@@ -7,9 +7,9 @@ const SendToken = async (req, res, user, statusCode) => {
     expires: new Date(
       Date.now() + process.env.COOKIE_LIFETIME * 24 * 60 * 60 * 1000
     ),
-    httpOnly: true,
-    withCredentials: false,
-    secure: true,
+    httpOnly: false,
+    withCredentials: true,
+    // secure: true,
   };
 
   // save cookie

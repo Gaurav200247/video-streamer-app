@@ -6,7 +6,7 @@ const LogOut = async (req, res) => {
     expires: new Date(Date.now()),
     httpOnly: false,
     withCredentials: true,
-    secure: true,
+    // secure: true,
   });
 
   res
