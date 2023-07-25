@@ -56,7 +56,7 @@ app.use(
   })
 );
 
-app.use(cookieParser()); //used to parse cookies
+app.use(cookieParser("MY SECRET")); //used to parse cookies
 
 // routes
 app.use("/api/v1", videosRouter);
