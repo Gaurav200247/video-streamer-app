@@ -4,7 +4,7 @@ const { StatusCodes } = require("http-status-codes");
 const LogOut = async (req, res) => {
   res.cookie("userToken", null, {
     expires: new Date(Date.now()),
-    httpOnly: true,
+    httpOnly: false,
     withCredentials: true,
     secure: true,
   });
