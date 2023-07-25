@@ -2,6 +2,7 @@ import axios from "axios";
 import { BASE_URL } from "./BASE_URL";
 const config = { headers: { "Content-Type": "application/json" } };
 
+// The cookie gets send automatically by the browser in every subsequent request.
 axios.defaults.withCredentials = true;
 
 export const RegisterUser = (userData) => async (dispatch) => {

@@ -13,11 +13,14 @@ const authMiddleware = async (req, res, next) => {
     );
   }
 
-  const decoded = JWT.verify(userToken, process.env.JWT_SECRET);
-
-  req.user = await User.findById(decoded.id);
-
-  next();
+  try {
+    const decoded = JWT.verify(userToken, process.env.JWT_SECRET);
+    req.user = await User.findById(decoded.id);
+    next();
+  } catch (error) {
+    res.clearCookie("userToken");
+    console.log(error);
+  }
 };
 
 const authRoles = (...roles) => {

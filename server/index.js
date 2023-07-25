@@ -38,8 +38,8 @@ const bodyParser = require("body-parser");
 
 app.use(
   cors({
-    origin: "https://video-streamer-app-frontend.vercel.app",
     credentials: true,
+    origin: "https://video-streamer-app-frontend.vercel.app",
   })
 );
 app.use(helmet());
@@ -56,7 +56,7 @@ app.use(
   })
 );
 
-app.use(cookieParser("MY SECRET")); //used to parse cookies
+app.use(cookieParser()); //used to parse cookies
 
 // routes
 app.use("/api/v1", videosRouter);
