@@ -5,6 +5,7 @@ const LogOut = async (req, res) => {
   res.cookie("userToken", null, {
     expires: new Date(Date.now()),
     httpOnly: true,
+    withCredentials: true,
   });
 
   res
