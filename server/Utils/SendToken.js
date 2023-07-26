@@ -7,9 +7,9 @@ const SendToken = async (req, res, user, statusCode) => {
     expires: new Date(
       Date.now() + process.env.COOKIE_LIFETIME * 24 * 60 * 60 * 1000
     ),
-    httpOnly: false,
-    withCredentials: true,
-    // secure: true,
+    httpOnly: true,
+    // secure: process.env.NODE_ENV !== "development", // Use secure cookies in production
+    // sameSite: "strict", // Prevent CSRF attacks
   };
 
   // save cookie
@@ -18,6 +18,12 @@ const SendToken = async (req, res, user, statusCode) => {
     user,
     userToken,
   });
+
+  // res.status(statusCode).json({
+  //   success: true,
+  //   user,
+  //   userToken,
+  // });
 };
 
 module.exports = SendToken;

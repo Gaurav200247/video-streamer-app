@@ -25,29 +25,35 @@ const notFoundMiddleware = require("./Middlewares/notFound");
 const errHandlerMiddleware = require("./Middlewares/errHandler");
 const videosRouter = require("./Routers/videosRouters");
 const userRouter = require("./Routers/UserRouters");
-const path = require("path");
+// const path = require("path");
 
 const cookieParser = require("cookie-parser");
 const bodyParser = require("body-parser");
 
 // Extra Packages for api security
 
-// https://video-streaming-app-7.netlify.app
 // http://localhost:3000
 // https://video-streamer-app-frontend.vercel.app
 
-app.use(
-  cors({
-    credentials: true,
-    origin: "https://video-streamer-app-frontend.vercel.app",
-  })
-);
+// cors
+app.use(function (req, res, next) {
+  res.header("Access-Control-Allow-Origin", req.header("Origin"));
+  res.header("Access-Control-Allow-Credentials", true);
+  res.header(
+    "Access-Control-Allow-Headers",
+    "Origin, X-Requested-With, Content-Type, Accept"
+  );
+  res.header("Access-Control-Allow-Methods", "GET, POST, OPTIONS, PUT, DELETE");
+  next();
+});
+
 app.use(helmet());
 app.use(xss());
 
 // middlewares
-app.use("/public", express.static("public"));
 app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
+
 app.use(bodyParser.json({ limit: "50mb" }));
 app.use(
   bodyParser.urlencoded({
@@ -55,7 +61,6 @@ app.use(
     extended: true,
   })
 );
-
 app.use(cookieParser()); //used to parse cookies
 
 // routes

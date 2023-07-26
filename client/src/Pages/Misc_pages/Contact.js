@@ -10,7 +10,7 @@ const Contact = () => {
     if (state.succeeded) {
       toast.success("Thanks you, we'll get in touch ASAP.");
     }
-  }, [state, toast]);
+  }, [state]);
 
   return (
     <div className="flex flex-col justify-center items-center w-full bg-gradient-to-tr from-purple-800 via-green-700 to-blue-500 p-5">

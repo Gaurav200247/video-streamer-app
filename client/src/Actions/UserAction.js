@@ -21,7 +21,11 @@ export const RegisterUser = (userData) => async (dispatch) => {
       config
     );
 
-    console.log({ data });
+    console.log({ RegisterUserData: data });
+
+    // if (data?.success && data?.userToken) {
+    //   cookies.set("userToken", data?.userToken, { path: "/" });
+    // }
 
     dispatch({ type: "RegisterSuccess", payload: data });
   } catch (error) {
@@ -39,7 +43,11 @@ export const loginUser = (email, password) => async (dispatch) => {
       config
     );
 
-    console.log({ data });
+    console.log({ LoginUserData: data });
+
+    // if (data?.success && data?.userToken) {
+    //   cookies.set("userToken", data?.userToken, { path: "/" });
+    // }
 
     dispatch({ type: "LoginSuccess", payload: data });
   } catch (error) {
@@ -53,7 +61,11 @@ export const loadUser = () => async (dispatch) => {
 
     const { data } = await axios.get(`${BASE_URL}/api/v1/me`);
 
-    console.log({ data });
+    console.log({ LoadUserData: data });
+
+    // if (data?.success && data?.userToken) {
+    //   cookies.set("userToken", data?.userToken, { path: "/" });
+    // }
 
     dispatch({ type: "LoadUserSuccess", payload: data });
   } catch (error) {
@@ -80,6 +92,10 @@ export const logOutUser = () => async (dispatch) => {
     const { data } = await axios.get(`${BASE_URL}/api/v1/logout`);
 
     console.log({ data });
+
+    // if (data?.success) {
+    //   cookies.set("userToken", "", { path: "/" });
+    // }
 
     dispatch({ type: "LogoutSuccess" });
   } catch (error) {

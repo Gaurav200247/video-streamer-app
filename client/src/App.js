@@ -46,26 +46,10 @@ import Contact from "./Pages/Misc_pages/Contact";
 const App = () => {
   const [isAdmin, setIsAdmin] = useState(false);
 
-  const [darkMode, setDarkMode] = useState(
-    localStorage.getItem("DarkTheme") === "true"
-      ? true
-      : localStorage.getItem("DarkTheme") === "false"
-      ? false
-      : true
-  );
-
   const { user, isAuthenticated } = useSelector((state) => state.user);
-
-  const ChangeTheme = () => {
-    setDarkMode(!darkMode);
-
-    localStorage.setItem("DarkTheme", !darkMode);
-  };
-  // console.log({ darkMode });
 
   useEffect(() => {
     store.dispatch(loadUser());
-    // store.dispatch(getMyDetails());
   }, []);
 
   useEffect(() => {
@@ -77,20 +61,7 @@ const App = () => {
   }, [user, isAdmin]);
 
   return (
-    <div
-      className={`${
-        darkMode
-          ? "dark bg-gradient-to-r  from-slate-900 via-zinc-900 to-gray-900  text-white "
-          : "bg-slate-300  text-black "
-      }   scroll-smooth min-h-screen duration-200`}
-    >
-      {/* <button
-        className=" bottom-0 right-0 fixed text-white bg-black p-4"
-        onClick={ChangeTheme}
-      >
-        {darkMode ? "darkmode Enabled" : "darkmode Disabled"}
-      </button> */}
-
+    <div className="dark bg-gradient-to-r  from-slate-900 via-zinc-900 to-gray-900  text-white scroll-smooth min-h-screen duration-200">
       <ToastContainer
         position="bottom-right"
         autoClose={5000}

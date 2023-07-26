@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import { useParams } from "react-router-dom";
 import ThumbnailCard from "../Components/Cards/ThumbnailCard";
 import { useDispatch, useSelector } from "react-redux";
@@ -15,7 +15,7 @@ const VideoSearch = () => {
 
   console.log(videos);
 
-  const [currentPage, setCurrentPage] = useState(1);
+  let currentPage = 1;
 
   useEffect(() => {
     dispatch(getAllVideos(txt, [], currentPage, false));

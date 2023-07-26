@@ -45,7 +45,7 @@ const WatchHistory = () => {
         </h1>
         {watch_history && watch_history.length > 0 ? (
           <div className="w-full shadow-md bg-gray-200 max-h-[80vh] rounded-md overflow-y-scroll flex flex-col justify-between items-center ">
-            {watch_history.map((item, index) => {
+            {watch_history.forEach((item, index) => {
               // console.log(item);
               return <SingleItem key={index} VideoID={item} />;
             })}

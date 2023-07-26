@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import { BsClockHistory } from "react-icons/bs";
 import { useDispatch, useSelector } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
@@ -30,13 +30,9 @@ const Profile = () => {
     navigate("/");
   };
 
-  const [Continue_Watching, setContinue_Watching] = useState(
-    user &&
-      user.user &&
-      user.user.watch_history &&
-      user.user.watch_history.length > 0 &&
-      user.user.watch_history[user.user.watch_history.length - 1]
-  );
+  let Continue_Watching =
+    user?.user?.watch_history?.length > 0 &&
+    user?.user?.watch_history[user.user.watch_history.length - 1];
 
   useEffect(() => {
     dispatch(getSingleVideoDetails(Continue_Watching));
