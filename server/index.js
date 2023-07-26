@@ -32,17 +32,16 @@ const bodyParser = require("body-parser");
 
 // Extra Packages for api security
 
-// cors
-app.use(function (req, res, next) {
-  res.header("Access-Control-Allow-Origin", req.header("Origin"));
-  res.header("Access-Control-Allow-Credentials", true);
-  res.header(
-    "Access-Control-Allow-Headers",
-    "Origin, X-Requested-With, Content-Type, Accept"
-  );
-  res.header("Access-Control-Allow-Methods", "GET, POST, OPTIONS, PUT, DELETE");
-  next();
-});
+// https://video-streaming-app-7.netlify.app
+// http://localhost:3000
+// https://video-streamer-app-frontend.vercel.app
+
+app.use(
+  cors({
+    credentials: true,
+    origin: "https://video-streamer-app-frontend.vercel.app",
+  })
+);
 
 app.use(helmet());
 app.use(xss());
