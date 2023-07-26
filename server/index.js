@@ -32,9 +32,6 @@ const bodyParser = require("body-parser");
 
 // Extra Packages for api security
 
-// http://localhost:3000
-// https://video-streamer-app-frontend.vercel.app
-
 // cors
 app.use(function (req, res, next) {
   res.header("Access-Control-Allow-Origin", req.header("Origin"));
