@@ -28,23 +28,17 @@ const userRouter = require("./Routers/UserRouters");
 const app = express();
 
 //  CORS
-const allowedOrigins = [
-  "https://video-streaming-app-7.netlify.app",
-  "http://localhost:3000",
-  "https://video-streamer-app-frontend.vercel.app",
-];
+// Define the allowed origin
+const allowedOrigin = "https://video-streamer-app-frontend.vercel.app";
+
+// CORS middleware configuration
 const corsOptions = {
-  origin: (origin, callback) => {
-    if (allowedOrigins.indexOf(origin) !== -1 || !origin) {
-      callback(null, origin); // Set the specific origin in the Access-Control-Allow-Origin header
-    } else {
-      callback(new Error("Not allowed by CORS"));
-    }
-  },
+  origin: allowedOrigin,
   credentials: true,
   optionsSuccessStatus: 200,
 };
 
+// Use the CORS middleware
 app.use(cors(corsOptions));
 
 // middlewares
