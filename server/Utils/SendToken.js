@@ -9,6 +9,7 @@ const SendToken = async (req, res, user, statusCode) => {
     ),
     httpOnly: true,
     secure: true,
+    sameSite: "Lax",
   };
 
   // save cookie
