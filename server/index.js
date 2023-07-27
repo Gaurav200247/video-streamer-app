@@ -28,22 +28,12 @@ const userRouter = require("./Routers/UserRouters");
 const app = express();
 
 //  CORS
-// Define the allowed origin
-// const allowedOrigin = "https://video-streamer-app-frontend.vercel.app";
-
-// const allowedOrigin = "http://localhost:3000";
-
-// // CORS middleware configuration
-// const corsOptions = {
-//   origin: allowedOrigin,
-//   credentials: true,
-//   optionsSuccessStatus: 200,
-// };
+// "https://video-streamer-app-frontend.vercel.app"
 
 // // Use the CORS middleware
 app.use(
   cors({
-    origin: "http://localhost:3000",
+    origin: "https://video-streamer-app-frontend.vercel.app",
     credentials: true,
   })
 );
