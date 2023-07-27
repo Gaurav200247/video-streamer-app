@@ -1,7 +1,7 @@
 import axios from "axios";
 import { BASE_URL } from "./BASE_URL";
 const config = {
-  headers: { "Content-Type": "application/json", withCredentials: true },
+  headers: { "Content-Type": "application/json" },
 };
 
 // The cookie gets send automatically by the browser in every subsequent request.
@@ -40,17 +40,19 @@ export const loginUser = (email, password) => async (dispatch) => {
   try {
     dispatch({ type: "LoginRequest" });
 
-    const { data } = await axios.post(
+    const response = await axios.post(
       `${BASE_URL}/api/v1/login`,
       { email, password },
       config
     );
 
-    console.log({ LoginUserData: data });
+    // Handle the response data
+    const data = response.data;
+    console.log("Response Data:", data);
 
-    // if (data?.success && data?.userToken) {
-    //   cookies.set("userToken", data?.userToken, { path: "/" });
-    // }
+    // Access the response headers
+    const headers = response.headers;
+    console.log("Response Headers:", headers);
 
     dispatch({ type: "LoginSuccess", payload: data });
   } catch (error) {

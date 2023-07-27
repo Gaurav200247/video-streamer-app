@@ -29,17 +29,24 @@ const app = express();
 
 //  CORS
 // Define the allowed origin
-const allowedOrigin = "https://video-streamer-app-frontend.vercel.app";
+// const allowedOrigin = "https://video-streamer-app-frontend.vercel.app";
 
-// CORS middleware configuration
-const corsOptions = {
-  origin: allowedOrigin,
-  credentials: true,
-  optionsSuccessStatus: 200,
-};
+// const allowedOrigin = "http://localhost:3000";
 
-// Use the CORS middleware
-app.use(cors(corsOptions));
+// // CORS middleware configuration
+// const corsOptions = {
+//   origin: allowedOrigin,
+//   credentials: true,
+//   optionsSuccessStatus: 200,
+// };
+
+// // Use the CORS middleware
+app.use(
+  cors({
+    origin: "http://localhost:3000",
+    credentials: true,
+  })
+);
 
 // middlewares
 app.use(express.json());

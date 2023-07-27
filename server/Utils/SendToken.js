@@ -11,8 +11,6 @@ const SendToken = async (req, res, user, statusCode) => {
     secure: true,
   };
 
-  res.setHeader("Access-Control-Allow-Origin", "*");
-
   // save cookie
   res.status(statusCode).cookie("userToken", userToken, options).json({
     success: true,
