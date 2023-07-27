@@ -12,7 +12,7 @@ const UpdateUserDetails = async (req, res) => {
 
   const avatar = req.file;
 
-  if (avatar.path) {
+  if (avatar?.path) {
     const user = await User.findById(req.user.id);
 
     // old avatar id

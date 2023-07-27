@@ -1,6 +1,8 @@
 import axios from "axios";
 import { BASE_URL } from "./BASE_URL";
-const config = { headers: { "Content-Type": "application/json" } };
+const config = {
+  headers: { "Content-Type": "application/json", withCredentials: true },
+};
 
 // The cookie gets send automatically by the browser in every subsequent request.
 axios.defaults.withCredentials = true;
@@ -13,6 +15,7 @@ export const RegisterUser = (userData) => async (dispatch) => {
       headers: {
         "Content-type": "multipart/form-data",
       },
+      withCredentials: true,
     };
 
     const { data } = await axios.post(

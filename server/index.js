@@ -7,9 +7,6 @@ require("express-async-errors");
 
 // -------------security packages-------------
 const cors = require("cors");
-const helmet = require("helmet");
-// const rateLimiter = require("express-rate-limit");
-const xss = require("xss-clean");
 
 // Simple Imports
 const cloudinary = require("cloudinary").v2;
@@ -19,38 +16,43 @@ cloudinary.config({
   api_secret: process.env.CLOUD_API_SECRET,
 });
 const express = require("express");
-const app = express();
+const cookieParser = require("cookie-parser");
+const bodyParser = require("body-parser");
+
 const connectDB = require("./db/connectDB");
 const notFoundMiddleware = require("./Middlewares/notFound");
 const errHandlerMiddleware = require("./Middlewares/errHandler");
 const videosRouter = require("./Routers/videosRouters");
 const userRouter = require("./Routers/UserRouters");
-// const path = require("path");
 
-const cookieParser = require("cookie-parser");
-const bodyParser = require("body-parser");
+const app = express();
 
-// Extra Packages for api security
+//  CORS
+const allowedOrigins = [
+  "https://video-streaming-app-7.netlify.app",
+  "http://localhost:3000",
+  "https://video-streamer-app-frontend.vercel.app",
+];
+const corsOptions = {
+  origin: (origin, callback) => {
+    if (allowedOrigins.indexOf(origin) !== -1 || !origin) {
+      callback(null, origin); // Set the specific origin in the Access-Control-Allow-Origin header
+    } else {
+      callback(new Error("Not allowed by CORS"));
+    }
+  },
+  credentials: true,
+  optionsSuccessStatus: 200,
+};
 
-// https://video-streaming-app-7.netlify.app
-// http://localhost:3000
-// https://video-streamer-app-frontend.vercel.app
-
-app.use(
-  cors({
-    credentials: true,
-    origin: "https://video-streamer-app-frontend.vercel.app",
-  })
-);
-
-app.use(helmet());
-app.use(xss());
+app.use(cors(corsOptions));
 
 // middlewares
 app.use(express.json());
-app.use(express.urlencoded({ extended: true }));
+// app.use(express.urlencoded({ extended: true }));
 
 app.use(bodyParser.json({ limit: "50mb" }));
+
 app.use(
   bodyParser.urlencoded({
     limit: "50mb",
@@ -61,17 +63,8 @@ app.use(cookieParser()); //used to parse cookies
 
 // routes
 app.use("/api/v1", videosRouter);
+
 app.use("/api/v1", userRouter);
-
-// build Routes
-
-// app.use(express.static(path.join(__dirname, "../client/build")));
-
-// console.log(path.join(__dirname, "../client/build"));
-
-// app.get("*", (req, res) => {
-//   res.sendFile(path.resolve(__dirname, "../client/build/index.html"));
-// });
 
 // simple route
 app.get("/", (req, res) => {
@@ -80,10 +73,12 @@ app.get("/", (req, res) => {
 
 // custom-middlewares
 app.use(notFoundMiddleware);
+
 app.use(errHandlerMiddleware);
 
 // app listening
 const PORT = process.env.PORT || 4000;
+
 const start = async () => {
   try {
     await connectDB(process.env.MONGO_URI);
