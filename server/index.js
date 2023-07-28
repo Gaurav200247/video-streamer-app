@@ -29,6 +29,7 @@ const app = express();
 
 //  CORS
 // "https://video-streamer-app-frontend.vercel.app"
+// http://localhost:3000
 
 // // Use the CORS middleware
 app.use(
