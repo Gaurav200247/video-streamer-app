@@ -21,10 +21,12 @@ const VideoList = () => {
     dispatch(getAllVideos("", [], 1, false, true));
   }, [dispatch]);
 
+  // console.log(videos);
+
   return (
-    <div className="flex justify-between items-center w-full lg:h-[110vh]">
+    <div className="flex justify-between items-start w-full lg:h-auto">
       {/* sidebar */}
-      <div className="w-0 overflow-hidden lg:w-[20%] h-full">
+      <div className="w-0 overflow-hidden lg:w-[20%] h-screen">
         <AdminSideBar />
       </div>
 
@@ -133,14 +135,7 @@ export const SimpleTable = ({ data }) => {
       disableSelectionOnClick
       rowHeight={50}
       autoHeight
-      initialState={{
-        pagination: {
-          paginationModel: {
-            pageSize: 10,
-          },
-        },
-      }}
-      pageSizeOptions={[10]}
+      // pageSizeOptions={[10]}
       className="bg-white"
     />
   );

@@ -25,6 +25,7 @@ export const getSingleVideoDetailsReducer = createReducer(
   {
     GetSingleVideoDetailsRequest: (state, action) => {
       state.loading = true;
+      state.video = null;
     },
     GetSingleVideoDetailsSuccess: (state, action) => {
       state.loading = false;
@@ -32,6 +33,8 @@ export const getSingleVideoDetailsReducer = createReducer(
     },
     GetSingleVideoDetailsFail: (state, action) => {
       state.loading = false;
+      state.video = null;
+
       state.errors = action.payload;
     },
     GetSingleVideoContentRequest: (state, action) => {

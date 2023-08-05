@@ -16,14 +16,8 @@ const Categories = ({ isMargin }) => {
 
       <div className="grid grid-cols-2 lg:grid-cols-4 gap-5  lg:p-[2rem] pt-[1.5rem] w-full">
         <CategoryCard genre="Action" image="/Categories/action.jpg" />{" "}
-        <CategoryCard genre="Fight" image="/Categories/adventure.jpg" />{" "}
-        {/* <CategoryCard genre="cartoons" image="/Categories/cartoons.jpg" />{" "} */}
         <CategoryCard genre="Anime" image="/Categories/anime.jpg" />{" "}
-        <CategoryCard genre="comedy" image="/Categories/comedy.jpg" />{" "}
-        {/* <CategoryCard genre="documentary" image="/Categories/documentary.jpg" /> */}
-        {/* <CategoryCard genre="drama" image="/Categories/drama.jpg" /> */}
-        {/* <CategoryCard genre="horror" image="/Categories/horror.jpg" /> */}
-        {/* <CategoryCard genre="thriller" image="/Categories/thriller.jpg" /> */}
+        <CategoryCard genre="Wildlife" image="/Categories/wildlife.jpg" />
         <CategoryCard genre="Sports" image="/Categories/sports.jpg" />
       </div>
     </div>

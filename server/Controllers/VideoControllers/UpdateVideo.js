@@ -56,122 +56,122 @@ const updateVideo = async (req, res) => {
     (req.files && req.files.cover_page && req.files.cover_page[0]) || "";
 
   // ********************************** Deleting old files from firebase storage **********************************
+  if (thumbnail || cover_page) {
+    const storage = getStorage(app);
 
-  const storage = getStorage(app);
+    // --------------------deleting cover page--------------------
+    const CoverlistRef = ref(storage, "cover_pages/");
 
-  // --------------------deleting cover page--------------------
-  const CoverlistRef = ref(storage, "cover_pages/");
-
-  listAll(CoverlistRef)
-    .then((res) => {
-      res.items.forEach((itemRef) => {
-        // finding cover_page
-        if (itemRef._location.path_ === givenVideo.cover_page.cover_path) {
-          // deleting cover page
-          deleteObject(itemRef)
-            .then(() => {
-              console.log("CoverPage deleted successfully");
-            })
-            .catch((error) => {
-              console.log(error);
-            });
-        }
+    listAll(CoverlistRef)
+      .then((res) => {
+        res.items.forEach((itemRef) => {
+          // finding cover_page
+          if (itemRef._location.path_ === givenVideo.cover_page.cover_path) {
+            // deleting cover page
+            deleteObject(itemRef)
+              .then(() => {
+                console.log("CoverPage deleted successfully");
+              })
+              .catch((error) => {
+                console.log(error);
+              });
+          }
+        });
+      })
+      .catch((error) => {
+        console.log(error);
       });
-    })
-    .catch((error) => {
-      console.log(error);
-    });
 
-  // --------------------deleting thumbnail--------------------
-  const ThumbnaillistRef = ref(storage, "thumbnails/");
+    // --------------------deleting thumbnail--------------------
+    const ThumbnaillistRef = ref(storage, "thumbnails/");
 
-  listAll(ThumbnaillistRef)
-    .then((res) => {
-      res.items.forEach((itemRef) => {
-        // finding cover_page
-        if (itemRef._location.path_ === givenVideo.thumbnail.thumbnail_path) {
-          // deleting cover page
-          deleteObject(itemRef)
-            .then(() => {
-              console.log("Thumbnail deleted successfully");
-            })
-            .catch((error) => {
-              console.log(error);
-            });
-        }
+    listAll(ThumbnaillistRef)
+      .then((res) => {
+        res.items.forEach((itemRef) => {
+          // finding cover_page
+          if (itemRef._location.path_ === givenVideo.thumbnail.thumbnail_path) {
+            // deleting cover page
+            deleteObject(itemRef)
+              .then(() => {
+                console.log("Thumbnail deleted successfully");
+              })
+              .catch((error) => {
+                console.log(error);
+              });
+          }
+        });
+      })
+      .catch((error) => {
+        console.log(error);
       });
-    })
-    .catch((error) => {
-      console.log(error);
-    });
 
-  // --------------------All files deleted successfully--------------------
+    // --------------------All files deleted successfully--------------------
 
-  console.log("All files deleted successfully !!");
+    console.log("All files deleted successfully !!");
 
-  // ********************************** Adding new files to firebase storage **********************************
+    // ********************************** Adding new files to firebase storage **********************************
 
-  // Initialize firebase Storage
-  const dateTime = new Date();
+    // Initialize firebase Storage
+    const dateTime = new Date();
 
-  // -----------------Uploading Cover Page-----------------
-  console.log("uploading Cover_page...");
+    // -----------------Uploading Cover Page-----------------
+    console.log("uploading Cover_page...");
 
-  const coverPageRef = ref(
-    storage,
-    `cover_pages/${dateTime.getTime() + cover_page.originalname}`
-  );
-  // setting metaData
-  const CoverPage_metadata = {
-    contentType: cover_page.mimetype,
-  };
-  // uploading files
-  const CoverPageSnapShot = await uploadBytesResumable(
-    coverPageRef,
-    cover_page.buffer,
-    CoverPage_metadata
-  );
+    const coverPageRef = ref(
+      storage,
+      `cover_pages/${dateTime.getTime() + cover_page.originalname}`
+    );
+    // setting metaData
+    const CoverPage_metadata = {
+      contentType: cover_page.mimetype,
+    };
+    // uploading files
+    const CoverPageSnapShot = await uploadBytesResumable(
+      coverPageRef,
+      cover_page.buffer,
+      CoverPage_metadata
+    );
 
-  // -----------------Uploading thumbnail-----------------
-  console.log("uploading thumbnail...");
+    // -----------------Uploading thumbnail-----------------
+    console.log("uploading thumbnail...");
 
-  const ThumbnailRef = ref(
-    storage,
-    `thumbnails/${dateTime.getTime() + thumbnail.originalname}`
-  );
-  // setting metaData
-  const Thumbnail_metadata = {
-    contentType: thumbnail.mimetype,
-  };
-  // uploading files
-  const ThumbnailSnapShot = await uploadBytesResumable(
-    ThumbnailRef,
-    thumbnail.buffer,
-    Thumbnail_metadata
-  );
+    const ThumbnailRef = ref(
+      storage,
+      `thumbnails/${dateTime.getTime() + thumbnail.originalname}`
+    );
+    // setting metaData
+    const Thumbnail_metadata = {
+      contentType: thumbnail.mimetype,
+    };
+    // uploading files
+    const ThumbnailSnapShot = await uploadBytesResumable(
+      ThumbnailRef,
+      thumbnail.buffer,
+      Thumbnail_metadata
+    );
 
-  //-----------------All files uploaded-----------------
-  console.log("All files uploaded successfully !!");
+    //-----------------All files uploaded-----------------
+    console.log("All files uploaded successfully !!");
 
-  // get URLs from this
-  const CoverPageURL = await getDownloadURL(CoverPageSnapShot.ref);
-  const ThumbnailURL = await getDownloadURL(ThumbnailSnapShot.ref);
+    // get URLs from this
+    const CoverPageURL = await getDownloadURL(CoverPageSnapShot.ref);
+    const ThumbnailURL = await getDownloadURL(ThumbnailSnapShot.ref);
 
-  // get path from this
-  const cover_path = CoverPageSnapShot.metadata.fullPath;
-  const thumbnail_path = ThumbnailSnapShot.metadata.fullPath;
+    // get path from this
+    const cover_path = CoverPageSnapShot.metadata.fullPath;
+    const thumbnail_path = ThumbnailSnapShot.metadata.fullPath;
 
-  // ************************************updating data with updated files************************************
-  updateData.thumbnail = {
-    ThumbnailURL,
-    thumbnail_path,
-  };
+    // ************************************updating data with updated files************************************
+    updateData.thumbnail = {
+      ThumbnailURL,
+      thumbnail_path,
+    };
 
-  updateData.cover_page = {
-    CoverPageURL,
-    cover_path,
-  };
-
+    updateData.cover_page = {
+      CoverPageURL,
+      cover_path,
+    };
+  }
   console.log({ updateData });
 
   // ------------------updating Database------------------

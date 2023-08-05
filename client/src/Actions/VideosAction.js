@@ -11,7 +11,7 @@ export const getAllVideos =
       if (!all) {
         link = `${BASE_URL}/api/v1/videos?title=${title}&tags=${tags}&page=${currentPage}&mostViewed=${mostViewed}&limit=${12}`;
       } else {
-        link = `${BASE_URL}/api/v1/videos`;
+        link = `${BASE_URL}/api/v1/videos?limit=100`;
       }
       // console.log({ link });
 

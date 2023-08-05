@@ -26,7 +26,7 @@ const Home = () => {
     videos.videos &&
     videos.videos.length > 0 &&
     videos.videos.filter(
-      (item) => item.speciality_In.includes("Fight") === true
+      (item) => item.speciality_In.includes("Anime") === true
     );
 
   let SportsVideos =
@@ -34,9 +34,24 @@ const Home = () => {
     videos.videos &&
     videos.videos.length > 0 &&
     videos.videos.filter(
-      (item) => item.speciality_In.includes("Tribute") === true
+      (item) => item.speciality_In.includes("Sports") === true
     );
-  // console.log({ ActionVideos });
+
+  let ActionVideos =
+    videos &&
+    videos.videos &&
+    videos.videos.length > 0 &&
+    videos.videos.filter(
+      (item) => item.speciality_In.includes("Action") === true
+    );
+
+  let DocumentaryVideos =
+    videos &&
+    videos.videos &&
+    videos.videos.length > 0 &&
+    videos.videos.filter(
+      (item) => item.speciality_In.includes("Wildlife") === true
+    );
 
   return (
     <div className="flex flex-col justify-between items-center w-full">
@@ -48,9 +63,13 @@ const Home = () => {
 
       <Slider1 Heading="Spotlights" data={featuredVideos} />
       {/* <Slider2 Heading="Action" data={ActionVideos} /> */}
-      <Slider2 Heading="Mixtapes" data={SportsVideos} />
+      <Slider2 Heading="Sports Mixtapes" data={SportsVideos} />
 
-      <Slider1 Heading="Best Fights" data={AnimeVideos} />
+      <Slider1 Heading="Anime Action" data={AnimeVideos} />
+
+      <Slider2 Heading="Non-Stop Action" data={ActionVideos} />
+
+      <Slider1 Heading="Wildlife" data={DocumentaryVideos} />
     </div>
   );
 };
