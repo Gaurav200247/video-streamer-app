@@ -35,6 +35,7 @@ const app = express();
 app.use(
   cors({
     origin: "https://video-streamer-app-frontend.vercel.app",
+    methods: ["GET", "POST", "PUT", "PATCH", "DELETE"],
     credentials: true,
   })
 );
