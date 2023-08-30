@@ -34,7 +34,10 @@ const app = express();
 // // Use the CORS middleware
 app.use(
   cors({
-    origin: "https://video-streamer-app-frontend.vercel.app",
+    origin: [
+      "http://localhost:3000",
+      "https://video-streamer-app-frontend.vercel.app",
+    ],
     methods: ["GET", "POST", "PUT", "PATCH", "DELETE"],
     credentials: true,
   })
