@@ -3,8 +3,11 @@ const { StatusCodes } = require("http-status-codes");
 //-------User LogOut-------
 const LogOut = async (req, res) => {
   res.cookie("userToken", null, {
-    maxAge: 0,
+    maxAge: new Date(Date.now() + 1000),
     httpOnly: true,
+    secure: true,
+    sameSite: "none",
+    path: "/",
   });
 
   res
