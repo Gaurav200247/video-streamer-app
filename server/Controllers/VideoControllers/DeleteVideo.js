@@ -97,7 +97,9 @@ const deleteVideo = async (req, res) => {
   // --------------------deleting video data from database--------------------
   console.log("deleting video data from database");
 
-  const DeletedVideo = await Video.findOneAndRemove(req.params.id);
+  const DeletedVideo = await Video.findByIdAndDelete(req.params.id)
+    .then(() => console.log("done deleting"))
+    .catch((err) => console.log(err, "DB delete failed"));
 
   res.status(StatusCodes.OK).json({
     success: true,
